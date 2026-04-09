@@ -15,12 +15,21 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-/* // ===== Main only for testing =====
+// ===== Main only for testing =====
 // Consts
-char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
+/* char lower[] = "abcdef ghijklmnopqrstuvwxyz";
+char upper[] = "ABCDEF GHIJK";
+char mixed[] = "The quick brown Fox jumps over the lazy Dog.";
+char special[] = "Some punctuation &;-.: 345 !@# should be ok."; */
 
-int main() {
-    
+/* int main() {
+    // capitalize(special);
+    // std::cout << "Length: " << str_len(special) << '\n';
+    str_invert_case(lower);
+    str_invert_case(upper);
+    str_invert_case(mixed);
+    str_invert_case(special);
+    // std::cout << "Starts with: " << str_starts_with(special, "Some p") << '\n';
     return 0;
 }
 // ===== End of test main ===== */
@@ -50,6 +59,8 @@ void capitalize(char string[]) {
         }
     }
     capitalized[i] = '\0'; // add \0 at the end
+
+    // std::cout << "Capitalize: " << capitalized << '\n';
 }
 
 
@@ -110,6 +121,41 @@ bool str_starts_with(const char str[], const char prefix[]) {
 }
 
 
-// bool str_ends_with(const char str[], const char suffix[]) {
-//     return false;
-// }
+bool str_ends_with(const char str[], const char suffix[]) {
+    return false;
+}
+
+
+unsigned str_count(const char str[], const char sub[]) {
+    return 0;
+}
+
+
+bool str_is_ascii(const char str[]) {
+    return false;
+}
+
+
+bool str_is_digit(const char str[]) {
+    return false;
+}
+
+
+long str_index(const char str[], const char sub[]) {
+    return 0;
+}
+
+
+void str_copy(char dst[], const char src[], std::size_t dst_size) {
+
+}
+
+
+bool str_equal(const char first[], const char second[]) {
+    return false;
+}
+
+
+void join(const char* array[], std::size_t count, char str[], const char sep[]) {
+
+}
