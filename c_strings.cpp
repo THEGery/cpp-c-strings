@@ -1,5 +1,5 @@
 #include <cstddef>
-#include <iostream>
+// #include <iostream>
 
 void capitalize(char string[]);
 std::size_t str_len(const char str[]);
@@ -15,7 +15,7 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-// ===== Main only for testing =====
+/* // ===== Main only for testing =====
 // Consts
 char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
 
@@ -23,7 +23,7 @@ int main() {
     
     return 0;
 }
-// ===== End of test main =====
+// ===== End of test main ===== */
 
 
 void capitalize(char string[]) {
@@ -90,7 +90,6 @@ void str_invert_case(char str[]) {
 bool str_starts_with(const char str[], const char prefix[]) {
     std::size_t pref_length = str_len(prefix);
     std::size_t str_length = str_len(str);
-    std::cout << pref_length << '\n';
     if (pref_length > str_length) {
         return false;
     }
@@ -109,3 +108,8 @@ bool str_starts_with(const char str[], const char prefix[]) {
     }
     return false;
 }
+
+
+// bool str_ends_with(const char str[], const char suffix[]) {
+//     return false;
+// }
