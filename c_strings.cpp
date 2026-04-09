@@ -20,8 +20,7 @@ void join(const char* array[], std::size_t count, char str[], const char sep[]);
 char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
 
 int main() {
-    std::cout << str_len(special) << '\n';
-    str_invert_case(special);
+    
     return 0;
 }
 // ===== End of test main =====
@@ -85,4 +84,28 @@ void str_invert_case(char str[]) {
         }
     }
     inverted[i] = '\0'; // add \0 at the end
+}
+
+
+bool str_starts_with(const char str[], const char prefix[]) {
+    std::size_t pref_length = str_len(prefix);
+    std::size_t str_length = str_len(str);
+    std::cout << pref_length << '\n';
+    if (pref_length > str_length) {
+        return false;
+    }
+    else {
+        for (std::size_t i = 0; i <= pref_length; i++) {
+            if (str[i] == prefix[i]) {
+                return true;
+            }
+            else if (pref_length == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    return false;
 }
