@@ -79,22 +79,26 @@ std::size_t str_len(const char str[]) {
 
 
 void str_invert_case(char str[]) {
-    std::size_t length = str_len(str) + 1;
-    char inverted[length];
+    // std::size_t length = str_len(str) + 1;
+    // char inverted[length];
     int i = 0;
     for (i = 0; str[i] != '\0'; i++) {
         // check if str[i] is lowercase
         if (str[i] >= 97 && str[i] <= 122) {
-            inverted[i] = str[i] - 32;
+            // inverted[i] = str[i] - 32;
+            str[i] -= 32;
         }
         else if (str[i] >= 65 && str[i] <= 90) {
-            inverted[i] = str[i] + 32;
+            // inverted[i] = str[i] + 32;
+            str[i] += 32;
         }
         else {
-            inverted[i] = str[i];
+            // inverted[i] = str[i];
         }
     }
-    inverted[i] = '\0'; // add \0 at the end
+    // inverted[i] = '\0'; // add \0 at the end
+    // TESTING
+    // std::cout << "Inverted: " << inverted << '\n';
 }
 
 
