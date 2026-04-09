@@ -1,5 +1,5 @@
 #include <cstddef>
-// #include <iostream>
+#include <iostream>
 
 void capitalize(char string[]);
 std::size_t str_len(const char str[]);
@@ -15,12 +15,16 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-// Main only for testing
-/* int main() {
+// ===== Main only for testing =====
+// Consts
+char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
+
+int main() {
     std::cout << str_len(special) << '\n';
-    capitalize(special);
+    str_invert_case(special);
     return 0;
-} */
+}
+// ===== End of test main =====
 
 
 void capitalize(char string[]) {
@@ -61,4 +65,24 @@ std::size_t str_len(const char str[]) {
         }
     }
     return length;
+}
+
+
+void str_invert_case(char str[]) {
+    std::size_t length = str_len(str) + 1;
+    char inverted[length];
+    int i = 0;
+    for (i = 0; str[i] != '\0'; i++) {
+        // check if str[i] is lowercase
+        if (str[i] >= 97 && str[i] <= 122) {
+            inverted[i] = str[i] - 32;
+        }
+        else if (str[i] >= 65 && str[i] <= 90) {
+            inverted[i] = str[i] + 32;
+        }
+        else {
+            inverted[i] = str[i];
+        }
+    }
+    inverted[i] = '\0'; // add \0 at the end
 }
