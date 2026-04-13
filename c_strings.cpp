@@ -98,25 +98,26 @@ void str_invert_case(char str[]) {
 
 
 bool str_starts_with(const char str[], const char prefix[]) {
-    std::size_t pref_length = str_len(prefix);
-    std::size_t str_length = str_len(str);
+    int pref_length = (int)str_len(prefix);
+    int str_length = (int)str_len(str);
+    bool state = false;
     if (pref_length > str_length) {
         return false;
     }
+    else if (pref_length == 0) {
+        return true;
+    }
     else {
-        for (std::size_t i = 0; i <= pref_length; i++) {
+        for (int i = 0; i < pref_length; i++) {
             if (str[i] == prefix[i]) {
-                return true;
-            }
-            else if (pref_length == 0) {
-                return true;
+                state = true;
             }
             else {
                 return false;
             }
         }
     }
-    return false;
+    return state;
 }
 
 
