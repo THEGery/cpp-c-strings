@@ -67,12 +67,7 @@ void capitalize(char string[]) {
 std::size_t str_len(const char str[]) {
     std::size_t length = 0;
     for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] == '\0') {
-            length--;
-        }
-        else {
-            length++;
-        }
+        length++;
     }
     return length;
 }
