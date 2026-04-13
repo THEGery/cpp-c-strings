@@ -15,21 +15,20 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-// ===== Main only for testing =====
+/* // ===== Main only for testing =====
 // Consts
-/* char lower[] = "abcdef ghijklmnopqrstuvwxyz";
+char lower[] = "abcdef ghijklmnopqrstuvwxyz";
 char upper[] = "ABCDEF GHIJK";
 char mixed[] = "The quick brown Fox jumps over the lazy Dog.";
-char special[] = "Some punctuation &;-.: 345 !@# should be ok."; */
+char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
 
-/* int main() {
-    // capitalize(special);
-    // std::cout << "Length: " << str_len(special) << '\n';
-    str_invert_case(lower);
-    str_invert_case(upper);
-    str_invert_case(mixed);
-    str_invert_case(special);
-    // std::cout << "Starts with: " << str_starts_with(special, "Some p") << '\n';
+int main() {
+    // str_ends_with(lower, "cdef");
+    str_starts_with(mixed, "The quick B"); // not true
+    str_starts_with(mixed, ""); // not true
+    str_starts_with(lower, "abcdef "); // true
+    str_ends_with(special, "punctuation &;-.: 345 "); // not true
+    str_ends_with(special, "uld be ok."); // true
     return 0;
 }
 // ===== End of test main ===== */
@@ -122,7 +121,29 @@ bool str_starts_with(const char str[], const char prefix[]) {
 
 
 bool str_ends_with(const char str[], const char suffix[]) {
-    return false;
+    // -1 due to "o indexed" char array
+    // str[45] = 1-45 -> minus null-term. = 1-44
+    // When used as index it's: 0-43!!
+    int suffix_length = (int)str_len(suffix) - 1;
+    int str_length = (int)str_len(str) - 1;
+    bool state = false;
+    if (suffix_length > str_length) {
+        return false;
+    }
+    else {
+        for (int i = (int)str_length, j = (int)suffix_length; j >= 0; i--, j--) {
+            if (str[i] == suffix[j]) {
+                state = true;
+            }
+            else if (suffix_length == 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    return state;
 }
 
 
