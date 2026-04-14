@@ -124,19 +124,19 @@ bool str_ends_with(const char str[], const char suffix[]) {
     // -1 due to "o indexed" char array
     // str[45] = 1-45 -> minus null-term. = 1-44
     // When used as index it's: 0-43!!
-    int suffix_length = (int)str_len(suffix) - 1;
-    int str_length = (int)str_len(str) - 1;
+    int suffix_length = (int)str_len(suffix);
+    int str_length = (int)str_len(str);
     bool state = false;
     if (suffix_length > str_length) {
         return false;
     }
+    else if (suffix_length == 0) {
+        return true;
+    }
     else {
-        for (int i = (int)str_length, j = (int)suffix_length; j >= 0; i--, j--) {
+        for (int i = (int)str_length - 1, j = (int)suffix_length - 1; j >= 0; i--, j--) {
             if (str[i] == suffix[j]) {
                 state = true;
-            }
-            else if (suffix_length == 0) {
-                return true;
             }
             else {
                 return false;
