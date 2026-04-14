@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <sys/types.h>
 // #include <iostream>
 
 void capitalize(char string[]);
@@ -17,15 +18,10 @@ void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 /* // ===== Main only for testing =====
 // Consts
-char text[] = "Lorem ipsum dolor sit amet; lorem ipsum dolor sit amet; sit";
+char extended[] = "umlauts (äöü) are not.";
 
 int main() {
-    str_count(text,"Lorem");
-    str_count(text,"ipsum");
-    str_count(text,"sit");
-    str_count(text,"Dolor");
-    str_count(text,"lorem ipsum");
-    str_count(text," ");
+    str_is_ascii(extended);
     return 0;
 }
 // ===== End of test main ===== */
@@ -162,7 +158,16 @@ unsigned str_count(const char str[], const char sub[]) {
 
 
 bool str_is_ascii(const char str[]) {
-    return false;
+    bool state = false;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if ((uint)str[i] < 128) {
+            state = true;
+        }
+        else {
+            return false;
+        }
+    }
+    return state;
 }
 
 
