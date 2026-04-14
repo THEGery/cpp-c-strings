@@ -146,6 +146,7 @@ unsigned str_count(const char str[], const char sub[]) {
 
     for (int i = 0, j = 0; str[i] != '\0'; i++) {
         if (str[i] == sub[j]) {
+            // j+1 to evaluate 'til above if is true
             if (j + 1 == sub_len) {occurance++;}
             j++;
         }
