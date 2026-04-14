@@ -1,6 +1,5 @@
 #include <cstddef>
 #include <sys/types.h>
-// #include <iostream>
 
 void capitalize(char string[]);
 std::size_t str_len(const char str[]);
@@ -16,15 +15,23 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-/* // ===== Main only for testing =====
+// ===== Main only for testing =====
 // Consts
-char extended[] = "umlauts (äöü) are not.";
+char single[] = "a";
+char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
+char single_c[2];
+char special_c[100];
+char limited_c[10];
+char large_c[] = "12345678901234567890123456789012345678901234567890";
 
 int main() {
-    str_is_ascii(extended);
+    str_copy(single_c, single, 2);
+    str_copy(special_c, special, 100);
+    str_copy(limited_c, special, 10);
+    str_copy(large_c, special, 4);
     return 0;
 }
-// ===== End of test main ===== */
+// ===== End of test main =====
 
 
 void capitalize(char string[]) {
@@ -212,7 +219,12 @@ long str_index(const char str[], const char sub[]) {
 
 
 void str_copy(char dst[], const char src[], std::size_t dst_size) {
+    size_t src_length = static_cast<size_t>(str_len(src));
 
+    for (int i = 0; src[i] != '\0'; i++) {
+        if (dst_size < src_length)
+        dst[i] = src[i];
+    }
 }
 
 
