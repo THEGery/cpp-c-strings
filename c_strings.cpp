@@ -17,18 +17,15 @@ void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 /* // ===== Main only for testing =====
 // Consts
-char lower[] = "abcdef ghijklmnopqrstuvwxyz";
-char upper[] = "ABCDEF GHIJK";
-char mixed[] = "The quick brown Fox jumps over the lazy Dog.";
-char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
+char text[] = "Lorem ipsum dolor sit amet; lorem ipsum dolor sit amet; sit";
 
 int main() {
-    // str_ends_with(lower, "cdef");
-    str_starts_with(mixed, "The quick B"); // not true
-    str_starts_with(mixed, ""); // not true
-    str_starts_with(lower, "abcdef "); // true
-    str_ends_with(special, "punctuation &;-.: 345 "); // not true
-    str_ends_with(special, "uld be ok."); // true
+    str_count(text,"Lorem");
+    str_count(text,"ipsum");
+    str_count(text,"sit");
+    str_count(text,"Dolor");
+    str_count(text,"lorem ipsum");
+    str_count(text," ");
     return 0;
 }
 // ===== End of test main ===== */
@@ -148,7 +145,19 @@ bool str_ends_with(const char str[], const char suffix[]) {
 
 
 unsigned str_count(const char str[], const char sub[]) {
-    return 0;
+    int sub_len = (int)str_len(sub);
+    int occurance = 0;
+
+    for (int i = 0, j = 0; str[i] != '\0'; i++) {
+        if (str[i] == sub[j]) {
+            if (j + 1 == sub_len) {occurance++;}
+            j++;
+        }
+        else {
+            j = 0;
+        }
+    }
+    return static_cast<unsigned>(occurance);
 }
 
 
