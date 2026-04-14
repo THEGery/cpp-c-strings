@@ -172,7 +172,16 @@ bool str_is_ascii(const char str[]) {
 
 
 bool str_is_digit(const char str[]) {
-    return false;
+    bool state = false;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 48 && str[i] <= 57) {
+            state = true;
+        }
+        else {
+            return false;
+        }
+    }
+    return state;
 }
 
 
