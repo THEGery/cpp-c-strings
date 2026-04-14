@@ -187,7 +187,27 @@ bool str_is_digit(const char str[]) {
 
 
 long str_index(const char str[], const char sub[]) {
-    return 0;
+    int sub_len = (int)str_len(sub);
+    long first = 0;
+    bool found = false;
+
+    for (int i = 0, j = 0; str[i] != '\0'; i++) {
+        if (str[i] == sub[j]) {
+            if (j + 1 == sub_len) {
+                first = i - j;
+                found = true;
+            }
+            j++;
+        }
+        else {
+            j = 0;
+        }
+
+        if (found == true) {
+            break;
+        }
+    }
+    return first;
 }
 
 
