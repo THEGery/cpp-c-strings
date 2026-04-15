@@ -234,7 +234,24 @@ void str_copy(char dst[], const char src[], std::size_t dst_size) {
 
 
 bool str_equal(const char first[], const char second[]) {
-    return false;
+    size_t first_len = str_len(first);
+    size_t second_len = str_len(second);
+    bool state = false;
+
+    if (first_len != second_len) {
+        return false;
+    }
+    else {
+        for (int i = 0; first[i] != '\0' && second[i] != '\0'; i++) {
+            if (first[i] == second[i]) {
+                state = true;
+            }
+            else {
+                state = false;
+            }
+        }
+    }
+    return state;
 }
 
 
