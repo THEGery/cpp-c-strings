@@ -15,51 +15,20 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-/* // ===== Main only for testing =====
-// Consts
-char single[] = "a";
-char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
-char single_c[2];
-char special_c[100];
-char limited_c[10];
-char large_c[] = "12345678901234567890123456789012345678901234567890";
-
-int main() {
-    str_copy(single_c, single, 2);
-    str_copy(special_c, special, 100);
-    str_copy(limited_c, special, 10);
-    str_copy(large_c, special, 4);
-    return 0;
-}
-// ===== End of test main ===== */
-
-
 void capitalize(char string[]) {
-    // +1 is for null terminator
-    std::size_t length = str_len(string) + 1;
-    char capitalized[length];
     int i = 0; // to add \0 at the end of capitalized
     for (i = 0; string[i] != '\0'; i++) {
         // check if string[i] is lowercase
         if (string[i] >= 97 && string[i] <= 122) {
             if (i == 0) {
-                capitalized[i] = (string[i] - 32);
+                string[i] -= 32;
             }
             // Check begining of string & before current char, is space
             else if (i > 0 && string[i - 1] == ' ') {
-                capitalized[i] = (string[i] - 32); // lower are upper +32
+                string[i] -= 32; // lower are upper +32
             }
-            else {
-                capitalized[i] = string[i];
-            }
-        }
-        else {
-            capitalized[i] = string[i];
         }
     }
-    capitalized[i] = '\0'; // add \0 at the end
-
-    // std::cout << "Capitalize: " << capitalized << '\n';
 }
 
 
