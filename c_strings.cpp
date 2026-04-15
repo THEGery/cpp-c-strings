@@ -225,5 +225,28 @@ bool str_equal(const char first[], const char second[]) {
 
 
 void join(const char* array[], std::size_t count, char str[], const char sep[]) {
+    if (count <= 0) { // If the array empty
+        str[0] = 'x';
+        str[1] = 0;
+    }
+    
+    std::size_t sep_len = static_cast<std::size_t>(str_len(sep));
+    std::size_t position = 0;
+    
+    for (std::size_t i = 0; i < count; i++) {
+        std::size_t element_len = str_len(array[i]); // array[i]=element 0
+        
+        for ( std::size_t j = 0; j < element_len; j++) {
+            str[position] = array[i][j];
+            position++;
+        }
 
+        if (i < count - 1) {
+            for (std::size_t k = 0; k < sep_len; k++) {
+                str[position] = sep[k];
+                position++;
+            }
+        }
+    }
+    str[position] = 0;
 }
