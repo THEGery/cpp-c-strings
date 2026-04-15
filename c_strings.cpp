@@ -15,7 +15,7 @@ bool str_equal(const char first[], const char second[]);
 void join(const char* array[], std::size_t count, char str[], const char sep[]);
 
 
-// ===== Main only for testing =====
+/* // ===== Main only for testing =====
 // Consts
 char single[] = "a";
 char special[] = "Some punctuation &;-.: 345 !@# should be ok.";
@@ -31,7 +31,7 @@ int main() {
     str_copy(large_c, special, 4);
     return 0;
 }
-// ===== End of test main =====
+// ===== End of test main ===== */
 
 
 void capitalize(char string[]) {
@@ -219,11 +219,16 @@ long str_index(const char str[], const char sub[]) {
 
 
 void str_copy(char dst[], const char src[], std::size_t dst_size) {
-    size_t src_length = static_cast<size_t>(str_len(src));
-
-    for (int i = 0; src[i] != '\0'; i++) {
-        if (dst_size < src_length)
+    size_t src_length = static_cast<size_t>(str_len(src)) + 1;
+    size_t i = 0;
+    for (i = 0; src[i] != '\0' && dst_size > i; i++) {
         dst[i] = src[i];
+    }
+    if (dst_size >= src_length) {
+        dst[i] = 0;
+    }
+    else {
+        dst[i - 1] = 0;
     }
 }
 
